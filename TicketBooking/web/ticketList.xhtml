@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Booking List</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    
+        
+       
+        
+    </h:head>
+    <h:body style="background-color: lightyellow">
+        
+         <nav class="navbar navbar-light bg-light">
+             
+          
+          <h:form><h:commandButton class="btn btn-primary"  value="LOGOUT" action="#{UM.logout()}" /></h:form>
+            
+         </nav>
+        <table class="table table-striped">
+          
+    <tr>
+      <th scope="col">Ticket#</th>
+      <th scope="col">Movie name</th>
+      <th scope="col">Names</th>
+      <th scope="col">Prices</th>
+      <th scope="col">Release Date</th>
+      <th scope="col">starttime</th>
+      <th scope="col">endtime</th>
+     
+      <th scope="col">Status</th>
+      <th scope="col">Action</th>
+    </tr>   
+                 
+            <ui:repeat value="#{UM.ticketList}" var="temp">
+                <tr>
+                    <td>#{temp.ticket_Id}</td>
+                    <td>#{temp.moviename}</td>  
+                    <td>#{temp.name}</td>
+                    <td>#{temp.price}</td>
+                    <td>#{temp.releasedate}</td>
+                    <td>#{temp.starttime}</td>
+                    <td>#{temp.endtime}</td>
+                   
+                        
+                    <td bgcolor="blue">#{temp.ticketStatus}</td>
+                    <td><h:form><h:commandButton class="btn btn-outline-warning" value="Cancel" action="#{UM.cancelTicket(temp)}"/><h:commandButton class="btn btn-outline-success " value="Reserve" action="#{UM.activateTicket(temp)}" /><h:commandButton class="btn btn-outline-success " value="Delete" action="#{UM.deleteTicket(temp)}"/></h:form></td>
+                </tr>
+            </ui:repeat>
+</table>
+        
+        
+        <h:form><h:commandButton class="btn btn-primary"  value="New Rervation" action="TicketRegistrationForm" /></h:form>
+        
+        
+            
+    </h:body>
+</html>
